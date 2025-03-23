@@ -1,0 +1,157 @@
+.lobby {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lobby-card {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.lobby-card .card-header {
+  background: #4834d4;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+}
+
+.lobby-card .card-body {
+  padding: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: block;
+  color: #2d3748;
+  font-size: 1.1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+}
+
+.btn-primary {
+  background-color: #4285f4;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #3367d6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+}
+
+.btn-primary:disabled {
+  background-color: #4285f4;
+  opacity: 0.7;
+}
+
+.room-item {
+  padding: 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.room-item:hover:not(.disabled) {
+  border-color: #4285f4;
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.1);
+}
+
+.room-item.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+}
+
+.room-status {
+  text-align: right;
+}
+
+.player-count {
+  display: block;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.full-indicator {
+  display: inline-block;
+  background: #dc3545;
+  color: white;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+h3.text-center {
+  color: #2d3748;
+  font-weight: 700;
+  margin: 2.5rem 0 1.5rem;
+  font-size: 1.5rem;
+}
+
+.text-center.text-muted {
+  color: #64748b;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 16px;
+  }
+  
+  .lobby-card {
+    border-radius: 12px;
+  }
+  
+  .lobby-card .card-header {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .lobby-card .card-body {
+    padding: 1.5rem;
+  }
+
+  .room-item {
+    padding: 1rem;
+  }
+} 

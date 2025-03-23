@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Ninety-Nine Card Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A multiplayer card game implementation using React, Node.js, and Socket.IO.
 
-## Available Scripts
+## Game Rules
 
-In the project directory, you can run:
+Ninety-Nine is a trick-taking card game for exactly 3 players. The game uses a special 37-card deck consisting of:
+- All cards from 6 through Ace in each suit (32 cards)
+- One Joker
 
-### `npm start`
+### Setup
+1. Players are dealt 12 cards each
+2. The 37th card is turned face up to determine the trump suit
+   - If the turn-up card is a 9 or Joker, there is no trump suit for that deal
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Bidding
+1. Each player selects 3 regular suited cards (no Joker) to discard
+2. The bid value is calculated as the sum of the suit values:
+   - Diamond = 0
+   - Spade = 1
+   - Heart = 2
+   - Club = 3
+3. Example: Discarding 5♥ (2), 7♠ (1), 3♦ (0) = 3 total
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Playing
+1. Nine tricks are played with the remaining 9 cards
+2. Players must follow suit if possible
+3. The highest card of the led suit wins unless trumped
+4. In trump games:
+   - Joker is the highest trump
+   - Any trump beats any non-trump card
+5. In no-trump games:
+   - Only the led suit matters
+   - Joker cannot win tricks
 
-### `npm test`
+### Scoring
+1. Players score 1 point per trick won
+2. Bonus points for meeting bids exactly:
+   - All 3 players meet bids: +10 each
+   - Only 2 meet bids: +20 each
+   - Only 1 meets bid: +30
+3. Game ends after 9 deals or when a target score is reached
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technical Setup
 
-### `npm run build`
+### Prerequisites
+- Node.js 14.x or higher
+- npm 6.x or higher
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ninety-nine-game.git
+cd ninety-nine-game
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install frontend dependencies:
+```bash
+npm install
+```
 
-### `npm run eject`
+3. Install server dependencies:
+```bash
+cd server
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Running the Application
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Start the server (from the server directory):
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Start the frontend (from the project root):
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Real-time multiplayer gameplay using Socket.IO
+- Beautiful card UI with animations
+- Responsive design for desktop and mobile
+- Game state management and validation
+- Room-based gameplay
+- Player lobbies and room creation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies Used
 
-### Code Splitting
+- Frontend:
+  - React
+  - TypeScript
+  - Socket.IO Client
+  - React Bootstrap
+  - CSS3 Animations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Backend:
+  - Node.js
+  - Express
+  - Socket.IO
+  - TypeScript
 
-### Analyzing the Bundle Size
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the ISC License.
