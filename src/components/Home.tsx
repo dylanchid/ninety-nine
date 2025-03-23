@@ -1,53 +1,26 @@
 import React, { useState } from 'react';
-import { Socket } from 'socket.io-client';
-import { Alert } from 'react-bootstrap';
-
-interface HomeProps {
-  socket: Socket;
-  onJoinRoom: (roomId: string, playerName: string) => void;
-}
 
 type GameMode = 'computer' | 'multiplayer' | null;
 
-const Home: React.FC<HomeProps> = ({ socket, onJoinRoom }) => {
+interface HomeProps {
+  onGameStart: (playerName: string, playerCount: number) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ onGameStart }) => {
   const [selectedMode, setSelectedMode] = useState<GameMode>(null);
   const [playerCount, setPlayerCount] = useState<number | null>(null);
   const [playerName, setPlayerName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
-  const handlePlayClick = async () => {
+  const handlePlayClick = () => {
     if (!playerName.trim() || !selectedMode || !playerCount) return;
+    
     setError('');
     setIsLoading(true);
 
-    if (selectedMode === 'multiplayer') {
-      // First create the room
-      socket.emit('create-room', async (createResponse: any) => {
-        if (!createResponse.success) {
-          setError(createResponse.error || 'Failed to create room');
-          setIsLoading(false);
-          return;
-        }
-
-        // Then join the created room
-        socket.emit('join-room', 
-          { roomId: createResponse.roomId, playerName }, 
-          (joinResponse: any) => {
-            setIsLoading(false);
-            if (joinResponse.success) {
-              onJoinRoom(createResponse.roomId, playerName);
-            } else {
-              setError(joinResponse.error || 'Failed to join room');
-            }
-          }
-        );
-      });
-    } else {
-      // Handle computer play mode
-      setIsLoading(false);
-      setError('AI mode is not implemented yet. Please use multiplayer mode.');
-    }
+    // For now, we'll just start the game with the selected options
+    onGameStart(playerName, playerCount);
   };
 
   return (
@@ -59,9 +32,9 @@ const Home: React.FC<HomeProps> = ({ socket, onJoinRoom }) => {
 
       <div className="home-container">
         {error && (
-          <Alert variant="danger" onClose={() => setError('')} dismissible className="mx-4 mt-4 mb-0">
+          <div className="alert alert-danger mx-4 mt-4 mb-0" role="alert">
             {error}
-          </Alert>
+          </div>
         )}
 
         <div className="game-modes">

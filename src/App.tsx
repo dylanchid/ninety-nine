@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
-import { io } from 'socket.io-client';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './components/Home';
 import GameRoom from './components/GameRoom';
 
-// Initialize socket connection
-const socket = io('http://localhost:3001');
+interface GameState {
+  playerName: string;
+  playerCount: number;
+}
 
 function App() {
-  const [gameState, setGameState] = useState<{
-    roomId: string;
-    playerName: string;
-  } | null>(null);
+  const [gameState, setGameState] = useState<GameState | null>(null);
 
-  const handleJoinRoom = (roomId: string, playerName: string) => {
-    setGameState({ roomId, playerName });
+  const handleGameStart = (playerName: string, playerCount: number) => {
+    setGameState({ playerName, playerCount });
   };
 
   return (
     <div className="App">
       {gameState ? (
         <GameRoom
-          socket={socket}
-          roomId={gameState.roomId}
           playerName={gameState.playerName}
+          playerCount={gameState.playerCount}
         />
       ) : (
-        <Home socket={socket} onJoinRoom={handleJoinRoom} />
+        <Home onGameStart={handleGameStart} />
       )}
     </div>
   );

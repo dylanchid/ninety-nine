@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #6b46c1 0%, #4834d4 100%);
+  background: #ffffff;
   padding: 40px 20px;
 }
 
@@ -58,6 +58,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+  background: #ffffff;
 }
 
 /* Basic button styles */
@@ -103,14 +104,13 @@ input:focus {
 .game-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: #2d3748;
 }
 
 .game-header h1 {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .game-header p {
@@ -118,6 +118,7 @@ input:focus {
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto;
+  color: #4a5568;
 }
 
 .home-container {

@@ -1,15 +1,137 @@
 .game-room {
-  padding: 20px;
-  min-height: 100vh;
-  background: #f8f9fa;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 800px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
 }
 
-.game-info {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.game-table {
+  flex: 1;
+  position: relative;
+  min-height: 600px;
+  border-radius: 200px;
+  background: #1a472a;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.table-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-felt {
+  background: #2d5a3c;
+  padding: 2rem;
+  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.table-felt p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.player-position {
+  position: absolute;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.player-position-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.player-position-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.player-position-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.player-info {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.player-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.player-info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.player-info p {
+  color: #64748b;
+  margin: 0;
+}
+
+.game-message {
+  text-align: center;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 16px;
+  margin-top: 2rem;
+}
+
+.game-message p {
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.game-message p:first-child {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
 }
 
 .turn-up-card {
@@ -20,15 +142,6 @@
 
 .other-players {
   margin-bottom: 20px;
-}
-
-.player-info {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: relative;
 }
 
 .current-turn-indicator {
@@ -93,14 +206,21 @@
 
 @media (max-width: 768px) {
   .game-room {
-    padding: 10px;
+    padding: 1rem;
+    min-height: 600px;
   }
 
-  .player-info {
-    margin-bottom: 20px;
+  .game-table {
+    margin: 1rem;
+    min-height: 400px;
   }
 
-  .trick-cards {
-    gap: 10px;
+  .player-position {
+    width: 150px;
+  }
+
+  .table-felt {
+    padding: 1rem;
+    border-radius: 50px;
   }
 } 
